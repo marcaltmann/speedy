@@ -1,12 +1,17 @@
 <template>
   <p class="current-word">
-    Hallo
+    {{ word }}
   </p>
 </template>
 
 <script>
 export default {
   name: 'CurrentWord',
+  data: function() {
+    return {
+      word: 'Hello',
+    };
+  },
 };
 </script>
 
