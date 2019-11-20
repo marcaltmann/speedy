@@ -2,22 +2,20 @@
   <main class="main">
     <h1>Speed-reading</h1>
 
-    <p>
-      Let's try out <a href="https://www.example.com">this link.</a>
-    </p>
-
-    <p>{{ msg }}</p>
-
     <CurrentWord :word="currentWord" class="u-mt-4"/>
 
     <button v-on:click="startTimer" type="button" class="u-mt-4">
       Start
     </button>
+
+    <WordStats :current="currentWordPosition" :total="totalWords"
+      class="u-mt-1"/>
   </main>
 </template>
 
 <script>
 import CurrentWord from './CurrentWord.vue';
+import WordStats from './WordStats.vue';
 
 const INTERVAL = 200; // milliseconds
 
@@ -25,6 +23,7 @@ export default {
   name: 'MainComponent',
   components: {
     CurrentWord,
+    WordStats,
   },
   data() {
     return {
@@ -38,6 +37,12 @@ export default {
     },
     currentWord() {
       return this.words[this.position];
+    },
+    currentWordPosition() {
+      return this.position + 1;
+    },
+    totalWords() {
+      return this.words.length;
     },
   },
   intervalId: null,
@@ -56,9 +61,6 @@ export default {
         }
       }, INTERVAL);
     },
-  },
-  mounted() {
-    this.startTimer();
   },
   props: {
     msg: String,

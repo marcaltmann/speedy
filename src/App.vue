@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MainComponent msg="Welcome to Your Vue.js App"/>
+    <MainComponent/>
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #f0f0f0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,8 +29,16 @@ export default {
   margin-top: 60px;
 }
 
+.u-mt-1 {
+  margin-top: 1.5rem;
+}
+
 .u-mt-2 {
   margin-top: 3rem;
+}
+
+.u-mt-3 {
+  margin-top: 4.5rem;
 }
 
 .u-mt-4 {
