@@ -26,7 +26,11 @@ export default {
 }
 
 .u-mt-2 {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
+}
+
+.u-mt-4 {
+  margin-top: 6rem;
 }
 
 </style>

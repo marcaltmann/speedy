@@ -8,12 +8,14 @@
 
     <p>{{ msg }}</p>
 
-    <CurrentWord :word="currentWord" class="u-mt-2"/>
+    <CurrentWord :word="currentWord" class="u-mt-4"/>
   </main>
 </template>
 
 <script>
 import CurrentWord from './CurrentWord.vue';
+
+const INTERVAL = 100; // milliseconds
 
 export default {
   name: 'MainComponent',
@@ -22,17 +24,26 @@ export default {
   },
   data: function() {
     return {
-      text: [
-        'Hello',
-        'world.',
-      ],
-      position: 1,
+      text: 'Der US-Diplomat Gordon Sondland ist der entscheidende Mann in den Impeachment-Untersuchungen. Er könnte Donald Trump direkt belasten. Doch wird er umfassend aussagen?',
+      position: 0,
     };
   },
   computed: {
-    currentWord: function() {
-      return this.text[this.position];
+    words: function() {
+      return this.text.split(' ');
     },
+    currentWord: function() {
+      return this.words[this.position];
+    },
+  },
+  mounted: function() {
+    let id = setInterval(() => {
+      if (this.position === this.words.length - 1) {
+        clearInterval(id);
+      } else {
+        this.position += 1;
+      }
+    }, INTERVAL);
   },
   props: {
     msg: String,
