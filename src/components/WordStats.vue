@@ -1,6 +1,7 @@
 <template>
   <p class="word-stats">
-    Words: {{ current }}/{{ total }}
+    Words: {{ current }}/{{ total }}<br>
+    Time: {{ seconds }} seconds
   </p>
 </template>
 
@@ -10,6 +11,12 @@ export default {
   props: {
     current: Number,
     total: Number,
+    time: Number,
+  },
+  computed: {
+    seconds() {
+      return Math.round(this.time / 1000);
+    }
   },
 };
 </script>

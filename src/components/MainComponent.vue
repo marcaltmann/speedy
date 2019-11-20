@@ -1,14 +1,24 @@
 <template>
-  <main class="main">
+  <main class="main container">
     <h1>Speed-reading</h1>
 
     <CurrentWord :word="currentWord" class="u-mt-4"/>
+
+    <textarea
+      v-model="text"
+      placeholder="Insert text"
+      spellcheck="false"
+      class="textarea u-mt-4">
+    </textarea>
 
     <button v-on:click="startTimer" type="button" class="u-mt-4">
       Start
     </button>
 
-    <WordStats :current="currentWordPosition" :total="totalWords"
+    <WordStats
+      :current="currentWordPosition"
+      :total="totalWords"
+      :time="restTime"
       class="u-mt-1"/>
   </main>
 </template>
@@ -27,13 +37,13 @@ export default {
   },
   data() {
     return {
-      text: 'Der US-Diplomat Gordon Sondland ist der entscheidende Mann in den Impeachment-Untersuchungen. Er könnte Donald Trump direkt belasten. Doch wird er umfassend aussagen?',
+      text: '',
       position: 0,
     };
   },
   computed: {
     words() {
-      return this.text.split(' ');
+      return this.text.trim().split(/\s+/);
     },
     currentWord() {
       return this.words[this.position];
@@ -43,6 +53,9 @@ export default {
     },
     totalWords() {
       return this.words.length;
+    },
+    restTime() {
+      return (this.totalWords - this.currentWordPosition) * INTERVAL;
     },
   },
   intervalId: null,
@@ -62,9 +75,6 @@ export default {
       }, INTERVAL);
     },
   },
-  props: {
-    msg: String,
-  },
 };
 </script>
 
@@ -82,5 +92,19 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.textarea {
+  display: block;
+  height: 10rem;
+  width: 100%;
 }
 </style>
