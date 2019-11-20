@@ -15,7 +15,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+$base-unit: 1.5rem;
+
 body {
   background-color: #f0f0f0;
 }

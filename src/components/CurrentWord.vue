@@ -13,9 +13,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+$current-word-font-size: 4rem;
+
 .current-word {
-  font-size: 4rem;
+  font-size: $current-word-font-size;
   line-height: 6rem;
+  min-height: 6rem;
 }
 </style>
