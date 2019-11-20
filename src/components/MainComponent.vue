@@ -9,6 +9,10 @@
     <p>{{ msg }}</p>
 
     <CurrentWord :word="currentWord" class="u-mt-4"/>
+
+    <button v-on:click="startTimer" type="button" class="u-mt-4">
+      Start
+    </button>
   </main>
 </template>
 
@@ -22,28 +26,39 @@ export default {
   components: {
     CurrentWord,
   },
-  data: function() {
+  data() {
     return {
       text: 'Der US-Diplomat Gordon Sondland ist der entscheidende Mann in den Impeachment-Untersuchungen. Er könnte Donald Trump direkt belasten. Doch wird er umfassend aussagen?',
       position: 0,
     };
   },
   computed: {
-    words: function() {
+    words() {
       return this.text.split(' ');
     },
-    currentWord: function() {
+    currentWord() {
       return this.words[this.position];
     },
   },
-  mounted: function() {
-    let id = setInterval(() => {
-      if (this.position === this.words.length - 1) {
-        clearInterval(id);
-      } else {
-        this.position += 1;
+  intervalId: null,
+  methods: {
+    startTimer() {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
       }
-    }, INTERVAL);
+      this.position = 0;
+      this.intervalId = setInterval(() => {
+        if (this.position === this.words.length - 1) {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        } else {
+          this.position += 1;
+        }
+      }, INTERVAL);
+    },
+  },
+  mounted() {
+    this.startTimer();
   },
   props: {
     msg: String,
