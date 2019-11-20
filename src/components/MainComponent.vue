@@ -15,7 +15,7 @@
 <script>
 import CurrentWord from './CurrentWord.vue';
 
-const INTERVAL = 100; // milliseconds
+const INTERVAL = 200; // milliseconds
 
 export default {
   name: 'MainComponent',
