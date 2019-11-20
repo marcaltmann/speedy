@@ -8,7 +8,7 @@
 
     <p>{{ msg }}</p>
 
-    <CurrentWord class="u-mt-2"/>
+    <CurrentWord :word="currentWord" class="u-mt-2"/>
   </main>
 </template>
 
@@ -19,6 +19,20 @@ export default {
   name: 'MainComponent',
   components: {
     CurrentWord,
+  },
+  data: function() {
+    return {
+      text: [
+        'Hello',
+        'world.',
+      ],
+      position: 1,
+    };
+  },
+  computed: {
+    currentWord: function() {
+      return this.text[this.position];
+    },
   },
   props: {
     msg: String,

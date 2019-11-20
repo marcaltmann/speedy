@@ -7,10 +7,8 @@
 <script>
 export default {
   name: 'CurrentWord',
-  data: function() {
-    return {
-      word: 'Hello',
-    };
+  props: {
+    word: String,
   },
 };
 </script>
